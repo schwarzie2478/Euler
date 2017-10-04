@@ -114,7 +114,7 @@ namespace Problem43
     {
         internal static long ToNumber(this List<int> numbers)
         {
-            int total = 0;
+            long total = 0;
             foreach (var number in numbers)
             {
                 total = 10 * total + number;
