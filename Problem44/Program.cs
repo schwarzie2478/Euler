@@ -34,7 +34,7 @@ namespace Problem44
                     //Check sum
                     if(generator.IsPentagonalNumber(generator.GetPentagonalNumber(p1)+generator.GetPentagonalNumber(p2)))
                     {
-
+                        bFound = true;
                         foundDifference = (Math.Min(foundDifference, difference));
                         Console.WriteLine($"Found two numbers {p1} & {p2}");
                         Console.WriteLine($"Difference is {difference}");
@@ -42,15 +42,15 @@ namespace Problem44
 
                 }
                 //search next pairing
-                if (p2 - p1 > iterations/100)
+                if ( p1 < 2)
                 {
-                    p1++;
-                    Console.WriteLine($"searching for p1 = {p1}");
-                    p2 = p1 + 2;
+                    p2++;
+                    p1 = p2 - 1;
+                    Console.WriteLine($"Searching for number {p2}");
                 }
                 else
                 {
-                    p2++;
+                    p1--;
                 }
 
             }
