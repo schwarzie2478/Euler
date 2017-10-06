@@ -26,6 +26,7 @@ namespace Problem49
                 int digit3 = remainder % 10;
                 int digit4 = remainder / 10;
                 var combinations = new List<int>();
+                if (digit1 == 0 || digit2 == 0 || digit3 == 0 || digit4 == 0) continue;
 
                 combinations.Add(MakeNumber(digit1, digit2, digit4, digit3));
                 combinations.Add(MakeNumber(digit1, digit2, digit3, digit4));
@@ -59,11 +60,26 @@ namespace Problem49
                 {
                     List<int> results = combinations.Where(p => primes.Get(p)).ToList();
                     results.Sort();
-                    if((results[2] - results[1]) == (results[1] - results[0]))
+                    for (int k = 0; k < results.Count-1; k++)
                     {
-                        result = i;
-                        bFound = true;
+                        
+                        for (int j = k + 1; j < results.Count; j++)
+                        {
+                            int diff = results[j] - results[k];
+                            if (diff == 0) continue;
+                            for (int l = j + 1; l < results.Count; l++)
+                            {
+                                if (results[l] == results[k] + 2 * diff)
+                                {
+                                    bFound = true;
+                                    break;
+                                }
+
+                            }
+
+                        }
                     }
+                    result = results[0];
                 }
 
 
